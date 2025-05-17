@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Teacher Dashboard</title>
+</head>
+<body>
+  <h1>📅 Welcome, <%= teacher.name %></h1>
+  <h2>Your Appointments</h2>
+
+  <% if (appointments.length > 0) { %>
+    <table border="1" cellpadding="10">
+      <tr>
+        <th>Student</th>
+        <th>Purpose</th>
+        <th>Time</th>
+        <th>Message</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+      <% appointments.forEach(appt => { %>
+        <tr>
+          <td><%= appt.student.name %></td>
+          <td><%= appt.purpose %></td>
+          <td><%= new Date(appt.appointmentTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) %></td>
+          <td><%= appt.message %></td>
+          <td><%= appt.status %></td>
+          <td>
+            <% if (appt.status === 'pending') { %>
+              <form action="/appointment/<%= appt._id %>/status" method="POST">
+                <button name="status" value="approved">✅ Approve</button>
+                <button name="status" value="rejected">❌ Reject</button>
+              </form>
+            <% } else { %>
+              -
+            <% } %>
+          </td>
+        </tr>
+      <% }) %>
+    </table>
+  <% } else { %>
+    <p>No appointments yet.</p>
+  <% } %>
+</body>
+</html>

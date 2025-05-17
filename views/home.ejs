@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student-Teacher Appointment Portal</title>
+  <style>
+    /* Basic Reset and Body Styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #2193b0, #6dd5ed);
+      color: white;
+      text-align: center;
+      padding: 0;
+    }
+
+    /* Header Styling */
+    header {
+      padding: 60px 20px;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-bottom: 2px solid #fff;
+    }
+
+    h1 {
+      font-size: 3.5em;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 1.3em;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      line-height: 1.6;
+    }
+
+    /* Role Boxes Section */
+    .role-boxes {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+      flex-wrap: wrap;
+    }
+
+    .box {
+      background-color: white;
+      color: #2193b0;
+      padding: 30px;
+      width: 280px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .box:hover {
+      transform: translateY(-5px);
+      background-color: #e0f7fa;
+    }
+
+    .box h3 {
+      font-size: 1.5em;
+      margin-bottom: 20px;
+      color: #2193b0;
+    }
+
+    .buttons a {
+      display: block;
+      margin: 10px 0;
+      padding: 12px 20px;
+      background-color: #2193b0;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .buttons a:hover {
+      background-color: #197aa2;
+    }
+
+    /* Footer Section */
+    footer {
+      margin-top: 60px;
+      padding: 20px;
+      background-color: rgba(0, 0, 0, 0.5);
+      font-size: 0.9em;
+      color: #eee;
+    }
+
+    footer a {
+      color: #eee;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5em;
+      }
+
+      p {
+        font-size: 1.1em;
+      }
+
+      .role-boxes {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .box {
+        width: 80%;
+        max-width: 350px;
+        margin: 0 auto;
+      }
+    }
+
+    /* Button Styling */
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #2193b0;
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      margin-top: 20px;
+      transition: background-color 0.3s;
+    }
+
+    .button:hover {
+      background-color: #197aa2;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to the Appointment Portal</h1>
+    <p>Book appointments with ease. Designed to streamline communication between students and teachers.</p>
+  </header>
+
+  <div class="role-boxes">
+    <div class="box">
+      <h3>I'm a Student</h3>
+      <div class="buttons">
+        <a href="/login/student">Login</a>
+        <a href="/signup/student">Signup</a>
+      </div>
+    </div>
+    <div class="box">
+      <h3>I'm a Teacher</h3>
+      <div class="buttons">
+        <a href="/login/teacher">Login</a>
+        <a href="/signup/teacher">Signup</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+   
+    &copy; <%= new Date().getFullYear() %> | Built to bridge the gap between students and teachers. <br>
+    <a href="/">Back to Home</a>
+  </footer>
+</body>
+</html>

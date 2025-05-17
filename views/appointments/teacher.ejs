@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Teacher - View Appointments</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f7fc;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 80%;
+      margin: 20px auto;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      color: #4CAF50;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    table th, table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    table th {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+    }
+    .action-buttons button {
+      padding: 8px 16px;
+      font-size: 14px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+    }
+    .approve {
+      background-color: #4CAF50;
+      color: white;
+    }
+    .reject {
+      background-color: #f44336;
+      color: white;
+    }
+    .search-bar input {
+      padding: 8px;
+      margin-bottom: 20px;
+      width: 300px;
+      font-size: 14px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+    .back-button {
+      text-decoration: none;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 5px;
+      margin-top: 20px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Your Appointments</h2>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <form method="GET" action="/appointments/teacher/<%= teacherId %>">
+        <input type="text" name="search" placeholder="Search by student name or purpose" value="<%= search %>">
+        <button type="submit">Search</button>
+      </form>
+    </div>
+
+    <% if (appointments.length === 0) { %>
+      <p>You don't have any appointments yet.</p>
+    <% } else { %>
+      <table>
+        <thead>
+          <tr>
+            <th>Student</th>
+            <th>Purpose</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% appointments.forEach(appointment => { %>
+            <tr>
+              <td><%= appointment.student.name %></td>
+              <td><%= appointment.purpose %></td>
+              <td><%= appointment.appointmentTime.toLocaleDateString() %></td>
+              <td><%= appointment.appointmentTime.toLocaleTimeString() %></td>
+              <td><%= appointment.status %></td>
+              <td class="action-buttons">
+                <form action="/appointments/<%= appointment._id %>/status" method="POST">
+                  <button type="submit" name="status" value="approved" class="approve">Approve</button>
+                  <button type="submit" name="status" value="rejected" class="reject">Reject</button>
+                </form>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    <% } %>
+
+    <a href="/" class="back-button">Go Back to Home</a>
+  </div>
+</body>
+</html>

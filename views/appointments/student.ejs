@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Appointments</title>
+  <style>
+     body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f4f7f6;
+      margin: 0;
+      color: #333;
+    }
+
+    h2 {
+      text-align: center;
+      color: #4CAF50;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: center;
+      border: 1px solid #ddd;
+      font-size: 16px;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #ddd;
+    }
+
+    a.button, button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    a.button:hover, button:hover {
+      background-color: #45a049;
+    }
+
+    form {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      width: 250px;
+      margin-right: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button[type="submit"] {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .back-home {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #4CAF50;
+      font-size: 16px;
+      text-decoration: none;
+    }
+
+    .back-home:hover {
+      color: #45a049;
+    }
+
+    .no-appointments {
+      text-align: center;
+      font-size: 18px;
+      color: #777;
+    }
+
+    .button-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Your Appointments</h2>
+
+  <% if (appointments.length === 0) { %>
+    <p class="no-appointments">You don't have any appointments yet.</p>
+  <% } else { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Teacher</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% appointments.forEach(appointment => { %>
+          <tr>
+            <td><%= appointment.teacher.name %></td>
+            <td><%= appointment.appointmentTime.toLocaleDateString() %></td>
+            <td><%= appointment.appointmentTime.toLocaleTimeString() %></td>
+            <td><%= appointment.status %></td>
+          </tr>
+        <% }); %>
+      </tbody>
+    </table>
+  <% } %>
+
+  <div class="button-container">
+    <a class="button" href="/book/<%= studentId %>">Book a New Appointment</a>
+  </div>
+
+  <!-- Check if the user is logged in and display the logout button -->
+  <% if (loggedIn) { %>
+    <div class="button-container">
+      <a class="button" href="/logout">Logout</a>
+    </div>
+  <% } %>
+
+  <a class="back-home" href="/">Go Back to Home</a>
+
+</body>
+</html>

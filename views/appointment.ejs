@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .status {
+            padding: 5px;
+            color: white;
+            border-radius: 4px;
+        }
+        .pending {
+            background-color: orange;
+        }
+        .approved {
+            background-color: green;
+        }
+        .rejected {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Appointments</h1>
+
+    <% if (appointments.length > 0) { %>
+        <table>
+            <thead>
+                <tr>
+                    <th>Student</th>
+                    <th>Teacher</th>
+                    <th>Purpose</th>
+                    <th>Appointment Time</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% appointments.forEach(appt => { %>
+                    <tr>
+                        <td><%= appt.student.name %></td>
+                        <td><%= appt.teacher.name %></td>
+                        <td><%= appt.purpose %></td>
+                        <td><%= new Date(appt.appointmentTime).toLocaleString() %></td>
+                        <td>
+                            <span class="status <%= appt.status.toLowerCase() %>">
+                                <%= appt.status.charAt(0).toUpperCase() + appt.status.slice(1) %>
+                            </span>
+                        </td>
+                        <td>
+                            <% if (appt.status === 'pending') { %>
+                                <form action="/appointment/<%= appt._id %>/approve" method="POST" style="display:inline;">
+                                    <input type="hidden" name="status" value="approved">
+                                    <button type="submit">Approve</button>
+                                </form>
+                                <form action="/appointment/<%= appt._id %>/approve" method="POST" style="display:inline;">
+                                    <input type="hidden" name="status" value="rejected">
+                                    <button type="submit">Reject</button>
+                                </form>
+                            <% } else { %>
+                                <span>No actions available</span>
+                            <% } %>
+                        </td>
+                    </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    <% } else { %>
+        <p>No appointments found.</p>
+    <% } %>
+</body>
+</html>

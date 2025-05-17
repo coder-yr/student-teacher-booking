@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= teacher.name %> - Details</title>
+</head>
+<body>
+    <h1>👨‍🏫 <%= teacher.name %></h1>
+
+    <div class="teacher-info">
+        <p><strong>Email:</strong> <%= teacher.email %></p>
+        <p><strong>Department:</strong> <%= teacher.department %></p>
+        <p><strong>Subject:</strong> <%= teacher.subject %></p>
+    </div>
+
+    <h2>📅 Available Appointment Slots</h2>
+
+    <form action="/appointment/book" method="POST">
+        <input type="hidden" name="teacherId" value="<%= teacher._id %>">
+
+        <label for="slot">Choose an available slot:</label>
+        <select name="slot" id="slot" required>
+            <% availableSlots.forEach(slot => { %>
+                <option value="<%= slot %>"><%= slot %></option>
+            <% }) %>
+        </select>
+
+        <br><br>
+
+        <label for="studentName">Your Name:</label>
+        <input type="text" name="studentName" required>
+
+        <br><br>
+
+        <label for="studentEmail">Your Email:</label>
+        <input type="email" name="studentEmail" required>
+
+        <br><br>
+
+        <label for="purpose">Purpose of Appointment:</label>
+        <input type="text" name="purpose" required>
+
+        <br><br>
+
+        <label for="message">Message to Teacher:</label>
+        <textarea name="message"></textarea>
+
+        <br><br>
+
+        <button type="submit">Book Appointment</button>
+    </form>
+</body>
+</html>
