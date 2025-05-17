@@ -56,6 +56,6 @@ A web-based application that allows students to book appointments with teachers 
 
 ### Installation
 ```bash
-git clone https://github.com/<your-username>/student-teacher-booking.git
+git clone ttps://github.com/coder-yr/student-teacher-booking.git
 cd student-teacher-booking
 npm install
