@@ -52,7 +52,10 @@ A web-based application that allows students to book appointments with teachers 
 
 ### Prerequisites
 - Node.js installed
-- MongoDB running locally 
+- MongoDB running locally
+
+- for testing
+- teacher - rahul.verma@example.com pass-teach123
 
 ### Installation
 ```bash
