@@ -57,8 +57,3 @@ A web-based application that allows students to book appointments with teachers 
 - for testing
 - teacher - rahul.verma@example.com pass-teach123
 
-### Installation
-```bash
-git clone ttps://github.com/coder-yr/student-teacher-booking.git
-cd student-teacher-booking
-npm install
