@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -18,7 +20,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Session configuration
 app.use(session({
-  secret: "your_secret_key",
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: { secure: false } // Set to true with HTTPS
@@ -31,7 +33,7 @@ const isAuthenticated = (req, res, next) => {
 };
 
 // MongoDB connection
-mongoose.connect("mongodb://127.0.0.1:27017/Appointment")
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("✅ Connected to DB"))
   .catch(err => console.error("❌ DB Error", err));
 
